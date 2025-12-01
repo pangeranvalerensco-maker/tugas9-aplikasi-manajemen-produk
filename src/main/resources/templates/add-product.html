@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Produk Baru</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tambah Produk Baru</h1>
+        <p><a th:href="@{/products}" class="btn back-btn">Kembali ke Daftar Produk</a></p>
+
+        <div th:if="${errorMessage}" class="alert error">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <form th:action="@{/products/add}" method="post" th:object="${product}">
+            <label for="name">Nama Produk:</label>
+            <input type="text" id="name" name="name" th:value="*{name}" required>
+
+            <label for="price">Harga:</label>
+            <input type="number" id="price" name="price" step="0.01" th:value="*{price}" required>
+
+            <label for="stock">Stok:</label>
+            <input type="number" id="stock" name="stock" th:value="*{stock}" required>
+
+            <button type="submit" class="btn submit-btn">Simpan Produk</button>
+        </form>
+    </div>
+</body>
+</html>

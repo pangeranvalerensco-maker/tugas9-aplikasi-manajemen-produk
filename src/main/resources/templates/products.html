@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manajemen Produk</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"> 
+</head>
+<body>
+    <div class="container">
+        <h1>Daftar Produk</h1>
+
+        <div th:if="${successMessage}" class="alert success">
+            <p th:text="${successMessage}"></p>
+        </div>
+        <div th:if="${errorMessage}" class="alert error">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <p><a th:href="@{/products/add}" class="btn add-btn">Tambah Produk</a></p>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Dibuat Pada</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.id}">1</td>
+                    <td th:text="${product.name}">Laptop A</td>
+                    <td th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 2, 'COMMA')}">1000.00</td>
+                    <td th:text="${product.stock}">10</td>
+                    <td th:text="${#temporals.format(product.createdAt, 'dd-MM-yyyy HH:mm')}">2025-01-01</td>
+                    <td>
+                        <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn edit-btn">Edit</a>
+                        
+                        <a th:href="@{/products/delete/{id}(id=${product.id})}" 
+                           onclick="return confirm('Apakah Anda yakin ingin menghapus produk ini?')"
+                           class="btn delete-btn">Hapus</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
