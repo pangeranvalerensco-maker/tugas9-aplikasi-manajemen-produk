@@ -33,7 +33,7 @@
                 <tr th:each="product : ${products}">
                     <td th:text="${product.id}">1</td>
                     <td th:text="${product.name}">Laptop A</td>
-                    <td th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 2, 'COMMA')}">1000.00</td>
+                    <td th:text="${#numbers.formatDecimal(product.price, 0, 'POINT', 3, 'COMMA')}">1000.000</td>
                     <td th:text="${product.stock}">10</td>
                     <td th:text="${#temporals.format(product.createdAt, 'dd-MM-yyyy HH:mm')}">2025-01-01</td>
                     <td>

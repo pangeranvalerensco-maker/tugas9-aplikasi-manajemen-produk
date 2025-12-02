@@ -4,32 +4,27 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity // Menandakan bahwa class ini adalah JPA entity
-@Table(name = "products") // Menghubungkan class ini dengan tabel 'products'
+@Entity
+@Table(name = "products")
 public class Product {
 
-    @Id // Primary Key
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id; // id, sesuai spesifikasi [cite: 21]
+    private Integer id;
 
-    private String name; // name, sesuai spesifikasi [cite: 22]
+    private String name;
 
-    private BigDecimal price; // price (gunakan BigDecimal untuk uang/harga) [cite: 23]
+    private BigDecimal price;
 
-    private Integer stock; // stock [cite: 24]
+    private Integer stock; 
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt; // created_at [cite: 25]
+    private LocalDateTime createdAt;
 
-    // Wajib menerapkan encapsulation (private + getter/setter) 
-
-    // 1. Constructor (Opsional, tapi membantu)
     public Product() {
-        this.createdAt = LocalDateTime.now(); // Set waktu saat objek dibuat
+        this.createdAt = LocalDateTime.now(); 
     }
 
-    // 2. Getter dan Setter
-    
     public Integer getId() {
         return id;
     }
